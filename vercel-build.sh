@@ -1,9 +1,13 @@
 #!/bin/bash
+# Set up Python 3.11
+/bin/bash setup-python.sh
+
+# Use Python 3.11 and pip3.11 for installations
+python3.11 -m venv venv
+source venv/bin/activate
+
 echo "Installing dlib from wheel..."
-pip install --no-cache-dir vendor/dlib-19.24.1-cp312-cp312-manylinux_2_17_x86_64.whl
+pip install vendor/dlib-19.24.1-cp311-cp311-manylinux_2_17_x86_64.whl
 
-# Install Python dependencies
 echo "Installing Python dependencies..."
-pip install --no-cache-dir -r requirements.txt
-
-# Install the manually downloaded dlib package
+pip install -r requirements.txt
