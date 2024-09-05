@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #f0f0f0, #d4d4f7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            text-align: left;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .visitor-photo img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        td {
+            background-color: #fafafa;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Visitor Details</h1>
+        <p><strong>Visitor ID:</strong> {{ visitor.VisiterID }}</p>
+        <p><strong>Name:</strong> {{ visitor.VisiterName }}</p>
+        <p><strong>First Visit Date:</strong> {{ visitor.FirstVisitDate }}</p>
+        <p><strong>Updated Date:</strong> {{ visitor.UpdatedDate }}</p>
+        <p><strong>Is Criminal:</strong> {{ visitor.IsCriminal }}</p>
+
+        <h2>Visitor Photo</h2>
+        <div class="visitor-photo">
+            {% if visitor.VisiterPhoto %}
+                <img src="data:image/jpeg;base64,{{ visitor.VisiterPhoto }}" alt="Visitor Photo">
+            {% else %}
+                <p>No photo available</p>
+            {% endif %}
+        </div>
+
+        <h2>Visit Records</h2>
+        <table>
+            <tr>
+                <th>Checkin Time</th>
+                <th>Checkout Time</th>
+            </tr>
+            {% for record in visitor.VisitRecords %}
+            <tr>
+                <td>{{ record.CheckinTime }}</td>
+                <td>{{ record.CheckoutTime }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a href="{% url 'visitor_list' %}" class="button">Back to Visitor List</a>
+    </div>
+</body>
+</html>

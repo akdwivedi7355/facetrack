@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Feed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #c2e0ff, #e0c2ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 640px;
+            width: 100%;
+        }
+
+        .camera-feed {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background: #45a049;
+        }
+
+        .button-secondary {
+            background: #007bff;
+            margin-top: 10px;
+        }
+
+        .button-secondary:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Face Tracking System</h1>
+        <img src="{% url 'video_feed' %}" class="camera-feed" />
+        <div>
+            <button class="button" onclick="window.location.reload();">Refresh Feed</button>
+            <a href="{% url 'visitor_list' %}">
+                <button class="button button-secondary">Visitor List</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
